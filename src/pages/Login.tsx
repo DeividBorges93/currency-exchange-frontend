@@ -6,7 +6,16 @@ import { StatusCodes } from 'http-status-codes';
 import { validateFieldsLoginWithEmail, validateFieldsLoginWithUsername } from "../utils/validateFields";
 
 export default function Login() {
-  
+  const navigate = useNavigate();
+
+  const url = 'http://localhost:3001/login';
+
+  const [errors, setErrors] = useState<IError>();
+
+  const refUsername = useRef<HTMLInputElement>(null);
+  const refEmail = useRef<HTMLInputElement>(null);
+  const refPassword = useRef<HTMLInputElement>(null);
+  const refUsernameOrEmail = useRef<HTMLInputElement>(null);
 
   return (
     <section className="global-container">
