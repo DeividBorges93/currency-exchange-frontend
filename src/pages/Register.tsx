@@ -47,6 +47,21 @@ export default function Register() {
     };
   };
 
+  const checkValues = async () => {
+    const submitBtn = document.getElementById('register-form-btn') as HTMLButtonElement;
+    const inputUsername = document.getElementById('username') as HTMLInputElement;
+    const inputEmail = document.getElementById('email') as HTMLInputElement;
+    const inputPassword = document.getElementById('password') as HTMLInputElement;
+
+    const { value: username } = inputUsername;
+    const { value: email } = inputEmail;
+    const { value: password } = inputPassword;
+
+    email.includes('@') && password.length >= 8 && username.length >= 3 &&
+    password !== null && username !== null &&
+    password !== '' && username !== '' ? submitBtn.disabled = false : submitBtn.disabled = true;
+  }
+
   return (
     <section className="global-container">
       <div className="form-container">
