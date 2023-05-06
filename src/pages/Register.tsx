@@ -18,6 +18,17 @@ export default function Register() {
   const refEmail = useRef<HTMLInputElement>(null);
   const refPassword = useRef<HTMLInputElement>(null);
 
+  const createUser = async (data: User) => {
+    axios.post(url, data)
+    .then((response) => {
+      if (response.status === StatusCodes.CREATED) {
+        localStorage.setItem('username', JSON.stringify(data.username));
+        navigate('/login');
+      };
+    })
+    .catch((err) => setErrors({ code: StatusCodes.UNAUTHORIZED, message: err.response.data }));
+  }
+
   return (
     <section className="global-container">
       <div className="form-container">
