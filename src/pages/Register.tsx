@@ -27,7 +27,25 @@ export default function Register() {
       };
     })
     .catch((err) => setErrors({ code: StatusCodes.UNAUTHORIZED, message: err.response.data }));
-  }
+  };
+
+  const addUser = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (refUsername.current && refEmail.current && refPassword.current) {
+      const data: User = {
+        username: refUsername.current.value,
+        email: refEmail.current.value,
+        password: refPassword.current.value,
+      };
+
+    const hasError = validateFieldsUser(data);
+
+    if (hasError) setErrors(hasError);
+
+    createUser(data);
+    };
+  };
 
   return (
     <section className="global-container">
