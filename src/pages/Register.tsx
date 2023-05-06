@@ -8,7 +8,15 @@ import { validateFieldsUser } from "../utils/validateFields";
 
 
 export default function Register() {
-  
+  const navigate = useNavigate();
+
+  const url = 'http://localhost:3001/register';
+
+  const [errors, setErrors] = useState<IError>();
+
+  const refUsername = useRef<HTMLInputElement>(null);
+  const refEmail = useRef<HTMLInputElement>(null);
+  const refPassword = useRef<HTMLInputElement>(null);
 
   return (
     <section className="global-container">
