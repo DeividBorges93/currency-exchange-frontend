@@ -41,6 +41,47 @@ export default function Login() {
     password !== '' && username !== '' ? submitBtn.disabled = false : submitBtn.disabled = true;
   };
 
+  const getValues = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  
+    if (refUsernameOrEmail.current && refPassword.current) {
+      if (refUsernameOrEmail.current.value.includes('@')) {
+        
+        const email = refUsernameOrEmail.current.value;
+        const password = refPassword.current.value;
+        
+        const user: IUserWithEmail = {
+          email,
+          password,
+        };
+  
+        const hasError = validateFieldsLoginWithEmail(user);
+  
+        if (hasError) setErrors(hasError);
+  
+        localStorage.setItem('email', JSON.stringify(email));
+        login(user);
+  
+      } else {
+  
+        const username = refUsernameOrEmail.current.value;
+        const password = refPassword.current.value;
+  
+        const user: IUserWithUsername = {
+          username,
+          password,
+        };
+  
+        const hasError = validateFieldsLoginWithUsername(user);
+  
+        if (hasError) setErrors(hasError);
+  
+        localStorage.setItem('username', JSON.stringify(username));
+        login(user);
+      }
+    }
+  }
+
   return (
     <section className="global-container">
       <div className="form-container">
