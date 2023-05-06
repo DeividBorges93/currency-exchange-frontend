@@ -26,8 +26,20 @@ export default function Login() {
       };
     })
     .catch((err) => setErrors({ code: StatusCodes.UNAUTHORIZED, message: err.response.data }));
-  }
+  };
   
+  const checkValues = async () => {
+    const submitBtn = document.getElementById('login-form-btn') as HTMLButtonElement;
+    const inputUsername = document.getElementById('username-email') as HTMLInputElement;
+    const inputPassword = document.getElementById('password') as HTMLInputElement;
+  
+    const { value: username } = inputUsername;
+    const { value: password } = inputPassword;
+  
+    password.length >= 8 && username.length >= 3 &&
+    password !== null && username !== null &&
+    password !== '' && username !== '' ? submitBtn.disabled = false : submitBtn.disabled = true;
+  };
 
   return (
     <section className="global-container">
