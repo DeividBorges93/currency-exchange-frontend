@@ -17,6 +17,18 @@ export default function Login() {
   const refPassword = useRef<HTMLInputElement>(null);
   const refUsernameOrEmail = useRef<HTMLInputElement>(null);
 
+  const login = async (data: IUserWithUsername | IUserWithEmail) => {
+    axios.post(url, data)
+    .then((response) => {
+      if (response.status === StatusCodes.OK) {
+        localStorage.setItem('token', JSON.stringify(response.data));
+        navigate('/home');
+      };
+    })
+    .catch((err) => setErrors({ code: StatusCodes.UNAUTHORIZED, message: err.response.data }));
+  }
+  
+
   return (
     <section className="global-container">
       <div className="form-container">
