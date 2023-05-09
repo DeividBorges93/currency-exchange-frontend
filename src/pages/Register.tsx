@@ -1,16 +1,15 @@
 import axios from "axios";
+import { StatusCodes } from "http-status-codes";
 import React, { useState, useRef, FormEvent } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 import { User } from "../schemas/schemas";
-import { StatusCodes } from 'http-status-codes';
 import { validateFieldsUser } from "../utils/validateFields";
-
-
 
 export default function Register() {
   const navigate = useNavigate();
 
-  const url = 'http://localhost:3001/register';
+  const url = "http://localhost:3001/register";
 
   const [errors, setErrors] = useState<IError>();
 
@@ -19,14 +18,20 @@ export default function Register() {
   const refPassword = useRef<HTMLInputElement>(null);
 
   const createUser = async (data: User) => {
-    axios.post(url, data)
-    .then((response) => {
-      if (response.status === StatusCodes.CREATED) {
-        localStorage.setItem('username', JSON.stringify(data.username));
-        navigate('/login');
-      };
-    })
-    .catch((err) => setErrors({ code: StatusCodes.UNAUTHORIZED, message: err.response.data }));
+    axios
+      .post(url, data)
+      .then((response) => {
+        if (response.status === StatusCodes.CREATED) {
+          localStorage.setItem("username", JSON.stringify(data.username));
+          navigate("/login");
+        }
+      })
+      .catch((err) =>
+        setErrors({
+          code: StatusCodes.UNAUTHORIZED,
+          message: err.response.data,
+        })
+      );
   };
 
   const addUser = async (event: FormEvent<HTMLFormElement>) => {
@@ -39,35 +44,49 @@ export default function Register() {
         password: refPassword.current.value,
       };
 
-    const hasError = validateFieldsUser(data);
+      const hasError = validateFieldsUser(data);
 
-    if (hasError) setErrors(hasError);
+      if (hasError) setErrors(hasError);
 
-    createUser(data);
-    };
+      createUser(data);
+    }
   };
 
   const checkValues = async () => {
-    const submitBtn = document.getElementById('register-form-btn') as HTMLButtonElement;
-    const inputUsername = document.getElementById('username') as HTMLInputElement;
-    const inputEmail = document.getElementById('email') as HTMLInputElement;
-    const inputPassword = document.getElementById('password') as HTMLInputElement;
+    const submitBtn = document.getElementById(
+      "register-form-btn"
+    ) as HTMLButtonElement;
+    const inputUsername = document.getElementById(
+      "username"
+    ) as HTMLInputElement;
+    const inputEmail = document.getElementById("email") as HTMLInputElement;
+    const inputPassword = document.getElementById(
+      "password"
+    ) as HTMLInputElement;
 
     const { value: username } = inputUsername;
     const { value: email } = inputEmail;
     const { value: password } = inputPassword;
 
-    email.includes('@') && password.length >= 8 && username.length >= 3 &&
-    password !== null && username !== null &&
-    password !== '' && username !== '' ? submitBtn.disabled = false : submitBtn.disabled = true;
-  }
+    email.includes("@") &&
+    password.length >= 8 &&
+    username.length >= 3 &&
+    password !== null &&
+    username !== null &&
+    password !== "" &&
+    username !== ""
+      ? (submitBtn.disabled = false)
+      : (submitBtn.disabled = true);
+  };
 
   return (
     <section className="global-container">
       <div className="form-container">
         <div className="wrap-register">
-          <form className="form-register" onSubmit={ addUser } >
-            {errors && <span className='error-message-register'>{errors.message}</span>}
+          <form className="form-register" onSubmit={addUser}>
+            {errors && (
+              <span className="error-message-register">{errors.message}</span>
+            )}
             <h1 className="form-title">Register</h1>
             <div className="wrap-register-input">
               <p className="title-input">Username</p>
@@ -102,11 +121,8 @@ export default function Register() {
                 ref={refPassword}
               />
             </div>
-            <div className='container-register-form-btn'>
-              <button
-                id='register-form-btn'
-                type='submit'
-              >
+            <div className="container-register-form-btn">
+              <button id="register-form-btn" type="submit">
                 Register
               </button>
             </div>
@@ -115,8 +131,8 @@ export default function Register() {
       </div>
       <div className="welcome-container">
         <div className="welcome-text">
-        <p className="welcome">Welcome</p>
-        <p className="create-account-text">create account to start</p>
+          <p className="welcome">Welcome</p>
+          <p className="create-account-text">create account to start</p>
         </div>
         <div className="login-here">
           <p className="have-account-text">Do you have an account?</p>
@@ -124,5 +140,5 @@ export default function Register() {
         </div>
       </div>
     </section>
-  )
+  );
 }
