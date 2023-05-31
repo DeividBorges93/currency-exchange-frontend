@@ -95,7 +95,7 @@ export default function Register() {
               <input
                 type="text"
                 id="username"
-                className="resgiter-input rounded-md focus:outline-none focus:ring-0 focus:border-solid focus:border-2 border-sky-800 drop-shadow-lg shadow-black px-1"
+                className="resgiter-input rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
                 name="name"
                 onChange={checkValues}
                 ref={refUsername}
@@ -106,7 +106,7 @@ export default function Register() {
               <input
                 type="email"
                 id="email"
-                className="resgiter-input rounded-md focus:outline-none focus:ring-0 focus:border-solid focus:border-2 border-sky-800 drop-shadow-lg shadow-black px-1"
+                className="resgiter-input rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
                 name="name"
                 onChange={checkValues}
                 ref={refEmail}
@@ -117,7 +117,7 @@ export default function Register() {
               <input
                 type="password"
                 id="password"
-                className="resgiter-input rounded-md focus:outline-none focus:ring-0 focus:border-solid focus:border-2 border-sky-800 drop-shadow-lg shadow-black px-1"
+                className="resgiter-input rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
                 name="name"
                 onChange={checkValues}
                 ref={refPassword}
