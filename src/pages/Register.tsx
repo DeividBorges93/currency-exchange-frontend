@@ -80,7 +80,7 @@ export default function Register() {
   };
 
   return (
-    <section className="grid grid-cols-3 h-screen">
+    <section className="grid grid-cols-1 lg:grid-cols-3 h-screen">
       <div className="form-container flex items-center col-span-2 justify-center bg-gray-500">
         <div className="wrap-register drop-shadow-custom rounded-lg bg-gray-300">
           <form className="form-register" onSubmit={addUser}>
