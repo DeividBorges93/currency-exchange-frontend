@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import ButtonComponent from "../components/ButtonComponent";
 import InputComponent from "../components/InputComponent";
+import ShowPasswordComponent from "../components/ShowPasswordComponent";
 import WelcomeComponent from "../components/WelcomeComponent";
 import {
   validateFieldsLoginWithEmail,
@@ -127,6 +128,7 @@ export default function Login() {
               onChange={checkValues}
               inputRef={refPassword}
             />
+            <ShowPasswordComponent />
             <ButtonComponent
               type="submit"
               id="login-form-btn"
