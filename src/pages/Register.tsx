@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import ButtonComponent from "../components/ButtonComponent";
 import InputComponent from "../components/InputComponent";
+import ShowPasswordComponent from "../components/ShowPasswordComponent";
 import WelcomeComponent from "../components/WelcomeComponent";
 import { User } from "../schemas/schemas";
 import { validateFieldsUser } from "../utils/validateFields";
@@ -118,6 +119,7 @@ export default function Register() {
               onChange={checkValues}
               inputRef={refPassword}
             />
+            <ShowPasswordComponent />
             <ButtonComponent
               type="submit"
               id="register-form-btn"
