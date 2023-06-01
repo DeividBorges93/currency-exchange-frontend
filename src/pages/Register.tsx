@@ -3,6 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import React, { useState, useRef, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
+import ButtonComponent from "../components/ButtonComponent";
+import InputComponent from "../components/InputComponent";
+import WelcomeComponent from "../components/WelcomeComponent";
 import { User } from "../schemas/schemas";
 import { validateFieldsUser } from "../utils/validateFields";
 
@@ -81,73 +84,57 @@ export default function Register() {
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-3 h-screen">
-      <div className="form-container flex items-center col-span-2 justify-center bg-gray-500">
+      <div className="form-container flex items-center col-span-2 justify-center bg-gradient-to-r from-gray-600 via-gray-500 to-gray-400">
         <div className="wrap-register drop-shadow-custom rounded-lg bg-gray-300">
           <form className="form-register" onSubmit={addUser}>
-            {errors && (
-              <span className="error-message-register">{errors.message}</span>
-            )}
-            <h1 className="form-title uppercase text-center font-bold pb-3.5 pt-8 text-sky-800">
+            <div className="text-center pb-3.5 pt-8">
+              {errors && (
+                <span className="error-message-register ">
+                  {errors.message}
+                </span>
+              )}
+            </div>
+            <h1 className="form-title uppercase text-center font-bold pb-3.5 pt-8 text-sky-500">
               Register
             </h1>
-            <div className="wrap-register-input px-8 py-2.5">
-              <p className="title-input text-xs pb-2">Username</p>
-              <input
-                type="text"
-                id="username"
-                className="resgiter-input rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
-                name="name"
-                onChange={checkValues}
-                ref={refUsername}
-              />
-            </div>
-            <div className="wrap-register-input px-8 py-2.5">
-              <p className="title-input text-xs pb-2">Email</p>
-              <input
-                type="email"
-                id="email"
-                className="resgiter-input rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
-                name="name"
-                onChange={checkValues}
-                ref={refEmail}
-              />
-            </div>
-            <div className="wrap-register-input px-8 py-2.5">
-              <p className="title-input text-xs pb-2">Password</p>
-              <input
-                type="password"
-                id="password"
-                className="resgiter-input rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
-                name="name"
-                onChange={checkValues}
-                ref={refPassword}
-              />
-            </div>
-            <div className="container-register-form-btn text-center py-3.5">
-              <button
-                id="register-form-btn"
-                type="submit"
-                className="bg-sky-800 text-white py-2 px-8 rounded-md disabled:bg-gray-500 disabled:text-gray-400"
-                disabled
-              >
-                Register
-              </button>
-            </div>
+            <InputComponent
+              type="text"
+              id="username"
+              label="Username"
+              onChange={checkValues}
+              inputRef={refUsername}
+            />
+            <InputComponent
+              type="email"
+              id="email"
+              label="Email"
+              onChange={checkValues}
+              inputRef={refEmail}
+            />
+            <InputComponent
+              type="password"
+              id="password"
+              label="Password"
+              onChange={checkValues}
+              inputRef={refPassword}
+            />
+            <ButtonComponent
+              type="submit"
+              id="register-form-btn"
+              value="Register"
+              bgcolordisabled="disabled:bg-gray-600"
+            />
           </form>
         </div>
       </div>
-      <div className="welcome-container flex flex-col items-center col-span-1 justify-evenly bg-gray-300">
-        <div className="welcome-text text-center">
-          <p className="welcome uppercase  text-sky-800">Welcome!</p>
-          <p className="create-account-text text-xs">create account to start</p>
-        </div>
-        <div className="login-here text-center">
-          <p className="have-account-text">Do you have an account?</p>
-          <a href="/login" className="login-here-text text-sky-800">
-            Login HERE
-          </a>
-        </div>
-      </div>
+      <WelcomeComponent
+        welcomeText="Welcome!"
+        createAccountText="create account to start"
+        haveNotAccountText="Do you have an account?"
+        hereText="Login HERE"
+        bgcolor="bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300"
+        link="/login"
+      />
     </section>
   );
 }

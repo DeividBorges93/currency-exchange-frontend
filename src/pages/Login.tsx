@@ -3,6 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import React, { useState, useRef, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
+import ButtonComponent from "../components/ButtonComponent";
+import InputComponent from "../components/InputComponent";
+import WelcomeComponent from "../components/WelcomeComponent";
 import {
   validateFieldsLoginWithEmail,
   validateFieldsLoginWithUsername,
@@ -98,54 +101,49 @@ export default function Login() {
   };
 
   return (
-    <section className="global-container">
-      <div className="form-container">
-        <div className="wrap-login">
-          <form className="form-login" onSubmit={getValues}>
+    <section className="grid grid-cols-1 lg:grid-cols-3 h-screen">
+      <div className="form-container flex items-center col-span-2 justify-center bg-gradient-to-l from-gray-400 via-gray-500 to-gray-600">
+        <div className="wrap-login  drop-shadow-custom rounded-lg bg-gray-300">
+          <div className="text-center pb-3.5 pt-8">
             {errors && (
-              <span className="error-message-login">{errors.message}</span>
+              <span className="error-message-login ">{errors.message}</span>
             )}
-            <h1 className="form-title">Login</h1>
-            <div className="wrap-login-input">
-              <p className="title-input">Username or Email</p>
-              <input
-                type="text"
-                id="username-email"
-                className="resgiter-input"
-                name="name"
-                onChange={checkValues}
-                ref={refUsernameOrEmail}
-              />
-            </div>
-            <div className="wrap-login-input">
-              <p className="title-input">Password</p>
-              <input
-                type="password"
-                id="password"
-                className="resgiter-input"
-                name="name"
-                onChange={checkValues}
-                ref={refPassword}
-              />
-            </div>
-            <div className="container-login-form-btn">
-              <button id="login-form-btn" type="submit">
-                login
-              </button>
-            </div>
+          </div>
+          <form className="form-login" onSubmit={getValues}>
+            <h1 className="form-title uppercase text-center font-bold pb-3.5 pt-8 text-sky-500">
+              Login
+            </h1>
+            <InputComponent
+              type="text"
+              id="username-email"
+              label="Username or email"
+              onChange={checkValues}
+              inputRef={refUsernameOrEmail}
+            />
+            <InputComponent
+              type="password"
+              id="password"
+              label="Password"
+              onChange={checkValues}
+              inputRef={refPassword}
+            />
+            <ButtonComponent
+              type="submit"
+              id="login-form-btn"
+              value="Login"
+              bgcolordisabled="disabled:bg-gray-600"
+            />
           </form>
         </div>
       </div>
-      <div className="welcome-container">
-        <div className="welcome-text">
-          <p className="welcome">Welcome</p>
-          <p className="create-account-text">create account to start</p>
-        </div>
-        <div className="login-here">
-          <p className="have-account-text">Do you have an account?</p>
-          <p className="login-here-text">Login HERE</p>
-        </div>
-      </div>
+      <WelcomeComponent
+        welcomeText="Welcome back!"
+        createAccountText="login to your account to get started"
+        haveNotAccountText="Do you have not an account?"
+        hereText="Register HERE"
+        bgcolor="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500"
+        link="/register"
+      />
     </section>
   );
 }
