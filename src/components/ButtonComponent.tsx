@@ -7,7 +7,7 @@ const ButtonComponent: React.FC<IButtonProps> = ({
   bgcolordisabled,
 }) => {
   const tailsClass =
-    "bg-sky-800 text-white py-2 px-8 rounded-md disabled:text-gray-400 ";
+    "bg-sky-600 hover:bg-sky-700 text-white py-2 px-8 rounded-md disabled:text-gray-400 ";
 
   return (
     <div className="container-form-btn text-center py-3.5">

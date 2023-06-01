@@ -9,7 +9,7 @@ const InputComponent: React.FC<
       <input
         id={id}
         type={type}
-        className="rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-800 drop-shadow-lg shadow-black px-1"
+        className="rounded-md border focus:outline-none focus:ring-0 focus:border-solid focus:border focus:border-sky-500 drop-shadow-lg shadow-black px-1"
         onChange={onChange}
         ref={inputRef}
       />

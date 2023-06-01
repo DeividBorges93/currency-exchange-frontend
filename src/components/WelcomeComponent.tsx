@@ -14,12 +14,15 @@ const WelcomeComponent: React.FC<IWelcomeProps> = ({
   return (
     <div className={tailsClass + bgcolor}>
       <div className="welcome-text text-center">
-        <p className="welcome uppercase text-sky-800">{welcomeText}</p>
+        <p className="welcome uppercase text-sky-600">{welcomeText}</p>
         <p className="create-account-text text-xs">{createAccountText}</p>
       </div>
       <div className="register-here text-center">
         <p className="have-not-account-text">{haveNotAccountText}</p>
-        <a href={link} className="register-here-text text-sky-800">
+        <a
+          href={link}
+          className="register-here-text text-sky-600 hover:text-sky-700"
+        >
           {hereText}
         </a>
       </div>
