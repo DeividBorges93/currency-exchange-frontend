@@ -14,7 +14,7 @@ import {
 export default function Login() {
   const navigate = useNavigate();
 
-  const url = "http://localhost:3001/login";
+  const url = "https://register-and-login-backend.onrender.com/login";
 
   const [errors, setErrors] = useState<IError>();
 

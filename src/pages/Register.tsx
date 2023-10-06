@@ -12,7 +12,7 @@ import { validateFieldsUser } from "../utils/validateFields";
 export default function Register() {
   const navigate = useNavigate();
 
-  const url = "http://localhost:3001/register";
+  const url = "https://register-and-login-backend.onrender.com/register";
 
   const [errors, setErrors] = useState<IError>();
 
